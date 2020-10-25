@@ -26,4 +26,8 @@ extern const LevelScript script_intro_L3[];
 extern const LevelScript script_intro_L4[];
 extern const LevelScript script_intro_L5[];
 
+extern const GeoLayout intro_geo_error_screen[];
+extern const LevelScript level_intro_entry_error_screen[];
+extern Gfx *geo18_display_error_message(u32 run, UNUSED struct GraphNode *sp44, UNUSED u32 sp48);
+
 #endif
