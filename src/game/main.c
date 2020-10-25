@@ -143,7 +143,7 @@ void alloc_pool(void) {
     void *end = (void *) (SEG_POOL_START + POOL_SIZE);
 
     // Detect memory size
-    if (does_pool_end_lie_out_of_bounds(end))
+    if (does_pool_end_lie_out_of_bounds())
         end = (void *)SEG_POOL_END_4MB;
 
     main_pool_init(start, end);

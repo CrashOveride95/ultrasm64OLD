@@ -30,28 +30,13 @@
 u8 gNotEnoughMemory = FALSE;
 u8 gDelayForErrorMessage = 0;
 
-u8 does_pool_end_lie_out_of_bounds(void *end) {
-#if 0
-    u32 endPhy = ((u32) end) & 0x1FFFFFFF;
-    u32 memSize = *((u32 *) 0x80000318);
-
-    if (endPhy > memSize) {
-        gNotEnoughMemory = TRUE;
-        return TRUE;
-    } else {
-        if (memSize < REQUIRED_MIN_MEM_SIZE) {
-            gNotEnoughMemory = TRUE;
-        }
-        return FALSE;
-    }
-#else
+u8 does_pool_end_lie_out_of_bounds(void) {
     if( osGetMemSize() < 0x00800000L ){
         gNotEnoughMemory = TRUE;
         return TRUE;
     }
     else
     return FALSE;
-#endif 
 }
 
 // If you're using an N64 console, then you will need to buy an\nexpansion pak to play this ROM hack.
