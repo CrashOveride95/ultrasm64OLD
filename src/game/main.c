@@ -139,7 +139,7 @@ void setup_mesg_queues(void) {
 
 void alloc_pool(void) {
     void *start = (void *) SEG_POOL_START;
-    void *end = (void *) SEG_POOL_END;
+    void *end = (void *) (SEG_POOL_START + POOL_SIZE);
 
     main_pool_init(start, end);
     gEffectsMemoryPool = mem_pool_init(0x4000, MEMORY_POOL_LEFT);
@@ -435,7 +435,7 @@ void thread1_idle(UNUSED void *arg) {
 
     osCreateViManager(OS_PRIORITY_VIMGR);
 #if defined(VERSION_US) || defined(VERSION_SH)
-    if (sp24 == TV_TYPE_NTSC) {
+    if (sp24 == OS_TV_NTSC) {
         osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
     } else {
         osViSetMode(&osViModeTable[OS_VI_PAL_LAN1]);

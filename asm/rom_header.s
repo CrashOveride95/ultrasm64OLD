@@ -9,11 +9,11 @@
 
 /* Revision */
 .if VERSION_SH == 1
-    .word  0x00001448
+    .word  0x0000144C
 .elseif VERSION_EU == 1
-    .word  0x00001446
+    .word  0x0000144C
 .else /* NTSC-U and NTSC-J 1.0 */
-    .word  0x00001444
+    .word  0x0000144C
 .endif
 
 .word  0x4EAA3D0E               /* Checksum 1 */
