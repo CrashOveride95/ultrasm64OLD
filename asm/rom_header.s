@@ -16,8 +16,8 @@
     .word  0x0000144C
 .endif
 
-.word  0x4EAA3D0E               /* Checksum 1 */
-.word  0x74757C24               /* Checksum 2 */
+.word  0x00000000               /* Checksum 1 */
+.word  0x00000000               /* Checksum 2 */
 .word  0x00000000               /* Unknown */
 .word  0x00000000               /* Unknown */
 .if VERSION_SH == 1

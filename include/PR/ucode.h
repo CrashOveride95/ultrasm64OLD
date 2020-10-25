@@ -210,7 +210,14 @@ extern u64 gspF3DZEX2_PosLight_fifoTextStart[],
            gspF3DZEX2_PosLight_fifoTextEnd[];
 extern u64 gspF3DZEX2_PosLight_fifoDataStart[],
            gspF3DZEX2_PosLight_fifoDataEnd[];
-
+extern u64 gspF3DZEX2_NoN_PosLight_fifoTextStart[],
+           gspF3DZEX2_NoN_PosLight_fifoTextEnd[];
+extern u64 gspF3DZEX2_NoN_PosLight_fifoDataStart[],
+           gspF3DZEX2_NoN_PosLight_fifoDataEnd[];
+extern u64 gspL3DZEX2_PosLight_fifoTextStart[],
+           gspL3DZEX2_PosLight_fifoTextEnd[];
+extern u64 gspL3DZEX2_PosLight_fifoDataStart[],
+           gspL3DZEX2_PosLight_fifoDataEnd[];
 
 /**************************************************************************
  *

@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Yay0 "slienc" compression tool
+// originally decompiled by SimonTime
+
 int main(int argc, const char **argv, const char **envp);
 void encode();
 void search(unsigned int a1, int a2, int *a3, unsigned int *a4);
