@@ -11,6 +11,7 @@
 #include "segments.h"
 #include "main.h"
 #include "thread6.h"
+#include "crash_screen.h"
 #include "mem_error_screen.h"
 
 // Message IDs
@@ -347,6 +348,7 @@ void thread3_main(UNUSED void *arg) {
     setup_mesg_queues();
     alloc_pool();
     load_engine_code_segment();
+    crash_screen_init();
 
     create_thread(&gSoundThread, 4, thread4_sound, NULL, gThread4Stack + 0x2000, 20);
     osStartThread(&gSoundThread);
