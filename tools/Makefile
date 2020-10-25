@@ -2,7 +2,7 @@ CC := gcc
 CXX := g++
 CFLAGS := -I . -Wall -Wextra -Wno-unused-parameter -pedantic -std=c99 -O2 -s
 LDFLAGS := -lm
-PROGRAMS := n64graphics n64graphics_ci mio0 n64cksum textconv patch_libultra_math aifc_decode aiff_extract_codebook vadpcm_enc tabledesign extract_data_for_mio skyconv
+PROGRAMS := n64graphics n64graphics_ci mio0 slienc  n64cksum textconv patch_libultra_math aifc_decode aiff_extract_codebook vadpcm_enc tabledesign extract_data_for_mio skyconv
 
 # if armips is not found on the system, build it in tools
 ifeq (, $(shell which armips 2> /dev/null))
@@ -25,6 +25,9 @@ n64graphics_ci_SOURCES := n64graphics_ci_dir/n64graphics_ci.c n64graphics_ci_dir
 
 mio0_SOURCES := libmio0.c
 mio0_CFLAGS := -DMIO0_STANDALONE
+
+slienc_SOURCES := slienc.c
+slienc_CFLAGS :=
 
 n64cksum_SOURCES := n64cksum.c utils.c
 n64cksum_CFLAGS := -DN64CKSUM_STANDALONE

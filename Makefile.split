@@ -32,8 +32,8 @@ ACTOR_GROUPS := \
     common1
 
 LEVEL_FILES := $(addsuffix leveldata,$(LEVEL_DIRS))
-MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(SEGMENTS))) $(addprefix $(BUILD_DIR)/actors/,$(addsuffix .mio0,$(ACTOR_GROUPS))) $(addprefix $(BUILD_DIR)/levels/,$(addsuffix .mio0,$(LEVEL_FILES)))
-MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
+YAY0_FILES := $(addprefix $(YAY0_DIR)/,$(addsuffix .szp,$(SEGMENTS))) $(addprefix $(BUILD_DIR)/actors/,$(addsuffix .szp,$(ACTOR_GROUPS))) $(addprefix $(BUILD_DIR)/levels/,$(addsuffix .szp,$(LEVEL_FILES)))
+YAY0_OBJ_FILES := $(YAY0_FILES:.szp=.szp.o)
 
 SEGMENT_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(SEGMENTS)))
 ACTOR_ELF_FILES := $(addprefix $(BUILD_DIR)/actors/,$(addsuffix .elf,$(ACTOR_GROUPS)))
