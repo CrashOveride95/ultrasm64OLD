@@ -107,6 +107,22 @@ ifeq ($(NON_MATCHING),1)
   COMPARE := 0
 endif
 
+# Save Type
+SAVE  = EEP4K
+
+# EEPROM 4K
+ifeq ($(SAVE),EEP4K) 
+  SAVE_NAME := EEP4K
+else
+
+# SRAM
+ifeq ($(SAVE),SRAM) 
+  SAVE_NAME := SRAM
+
+endif
+endif
+
+SAVE_CFLAG = -DSAVETYPE=$(SAVE_NAME)
 ################### Universal Dependencies ###################
 
 # (This is a bit hacky, but a lot of rules implicitly depend
@@ -277,7 +293,7 @@ INCLUDE_CFLAGS := -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I .
 CC_CHECK := gcc
 CC_CHECK_CFLAGS := -fsyntax-only -fsigned-char $(CC_CFLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) -std=gnu90 -Wall -Wextra -Wno-format-security -Wno-main -DNON_MATCHING -DAVOID_UB $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)
 
-COMMON_CFLAGS = $(OPT_FLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) $(VERSION_CFLAGS) $(MATCH_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS) -D_FINALROM
+COMMON_CFLAGS = $(OPT_FLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) $(VERSION_CFLAGS) $(MATCH_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS) -D_FINALROM $(SAVE_CFLAG)
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS) $(MATCH_ASFLAGS) $(GRUCODE_ASFLAGS)
 CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(COMMON_CFLAGS) $(MIPSBIT)
