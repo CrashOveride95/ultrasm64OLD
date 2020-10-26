@@ -182,6 +182,7 @@ SECTIONS
       BUILD_DIR/src/audio/external.o(.text);
       BUILD_DIR/src/audio/port_eu.o(.text);
       */libultra_rom.a:*.o(.text);
+      build/us/asm/llmuldiv_gcc.o(.text);
 
 #if defined(VERSION_EU) || defined(VERSION_SH)
       BUILD_DIR/lib/rsp.o(.text);
