@@ -182,24 +182,16 @@ SECTIONS
       BUILD_DIR/src/audio/external.o(.text);
       BUILD_DIR/src/audio/port_eu.o(.text);
       */libultra_rom.a:*.o(.text);
-<<<<<<< Updated upstream
-      BUILD_DIR/asm/llmuldiv_gcc.o(.text);
-=======
       */libhvqm2.a:*.o(.text);
       build/us/asm/llmuldiv_gcc.o(.text);
->>>>>>> Stashed changes
 
       BUILD_DIR/lib/rsp.o(.text);
       BUILD_DIR/src/game*.o(.text);
       BUILD_DIR/src/audio*.o(.text);
       BUILD_DIR/lib/rsp.o(.text);
-<<<<<<< Updated upstream
-
-=======
 #endif
       lib/PR/hvqm/hvqm2sp1.o(.text);
       lib/PR/hvqm/hvqm2sp2.o(.text);
->>>>>>> Stashed changes
       /* data */
 #ifdef VERSION_EU
       BUILD_DIR/src/game/_Ldtob.o(.data*);
