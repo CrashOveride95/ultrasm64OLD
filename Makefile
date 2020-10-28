@@ -12,7 +12,7 @@ default: all
 # Version of the game to build
 VERSION ?= us
 # Graphics microcode used
-GRUCODE ?= f3d_old
+GRUCODE ?= f3dzex
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE ?= 0
 # If NON_MATCHING is 1, define the NON_MATCHING and AVOID_UB macros when building (recommended)
@@ -228,7 +228,10 @@ SOUND_OBJ_FILES := $(SOUND_BIN_DIR)/sound_data.o
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
-           $(foreach file,$(GENERATED_C_FILES),$(file:.c=.o))
+           $(foreach file,$(GENERATED_C_FILES),$(file:.c=.o)) \
+           lib/PR/hvqm/hvqm2sp1.o lib/PR/hvqm/hvqm2sp2.o \
+           $(BUILD_DIR)/assets/hvqm.o
+
 
 GODDARD_O_FILES := $(foreach file,$(GODDARD_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
 
@@ -287,7 +290,7 @@ ifeq ($(TARGET_N64),1)
   CC_CFLAGS := -fno-builtin
 endif
 
-INCLUDE_CFLAGS := -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I . -I include/libc
+INCLUDE_CFLAGS := -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I . -I include/libc -I include/hvqm
 
 # Check code syntax with host compiler
 CC_CHECK := gcc
@@ -534,6 +537,9 @@ $(BUILD_DIR)/assets/mario_anim_data.c: $(wildcard assets/anims/*.inc.c)
 
 $(BUILD_DIR)/assets/demo_data.c: assets/demo_data.json $(wildcard assets/demos/*.bin)
 	$(PYTHON) tools/demo_data_converter.py assets/demo_data.json $(VERSION_CFLAGS) > $@
+    
+$(BUILD_DIR)/assets/%.o: $(BUILD_DIR)/assets/%.s
+	$(AS) $(ASFLAGS) -o $@ $<
 
 ifeq ($(COMPILER),ido)
 # Source code
@@ -618,8 +624,8 @@ $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 $(BUILD_DIR)/libgoddard.a: $(GODDARD_O_FILES)
 	$(AR) rcs -o $@ $(GODDARD_O_FILES)
 
-$(ELF): $(O_FILES) $(YAY0_OBJ_FILES) $(SOUND_OBJ_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt $(BUILD_DIR)/libgoddard.a
-	$(LD) -L $(BUILD_DIR) $(LDFLAGS) -o $@ $(O_FILES)$(LIBS) -L $(N64_LIBS_DIR) -lultra_rom -lgoddard
+$(ELF): $(O_FILES) $(YAY0_OBJ_FILES) $(SOUND_OBJ_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt lib/libhvqm2.a $(BUILD_DIR)/libgoddard.a
+	$(LD) -L $(BUILD_DIR) $(LDFLAGS) -o $@ $(O_FILES)$(LIBS) -L $(N64_LIBS_DIR) -lultra_rom -lgoddard -lhvqm2
 
 $(ROM): $(ELF)
 	$(OBJCOPY) $(OBJCOPYFLAGS) $< $(@:.z64=.bin) -O binary

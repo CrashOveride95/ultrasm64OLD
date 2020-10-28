@@ -58,6 +58,7 @@ struct StructSH8031D9B0 gCurrRumbleSettings;
 
 struct VblankHandler *gVblankHandler1 = NULL;
 struct VblankHandler *gVblankHandler2 = NULL;
+struct VblankHandler *gVblankHandler3 = NULL;
 struct SPTask *gActiveSPTask = NULL;
 struct SPTask *sCurrentAudioSPTask = NULL;
 struct SPTask *sCurrentDisplaySPTask = NULL;
@@ -284,6 +285,9 @@ void handle_vblank(void) {
     if (gVblankHandler2 != NULL) {
         osSendMesg(gVblankHandler2->queue, gVblankHandler2->msg, OS_MESG_NOBLOCK);
     }
+    if (gVblankHandler3 != NULL) {
+        osSendMesg(gVblankHandler3->queue, gVblankHandler3->msg, OS_MESG_NOBLOCK);
+    }
 }
 
 void handle_sp_complete(void) {
@@ -344,6 +348,8 @@ void handle_dp_complete(void) {
     sCurrentDisplaySPTask = NULL;
 }
 
+extern void createHvqmThread(void);
+
 void thread3_main(UNUSED void *arg) {
     setup_mesg_queues();
     alloc_pool();
@@ -358,6 +364,8 @@ void thread3_main(UNUSED void *arg) {
     else
         create_thread(&gGameLoopThread, 5, thread5_mem_error_message_loop, NULL, gThread5Stack + 0x2000, 10);
     osStartThread(&gGameLoopThread);
+    
+    createHvqmThread();
 
     while (TRUE) {
         OSMesg msg;
@@ -394,6 +402,9 @@ void set_vblank_handler(s32 index, struct VblankHandler *handler, OSMesgQueue *q
             break;
         case 2:
             gVblankHandler2 = handler;
+            break;
+        case 3:
+            gVblankHandler3 = handler;
             break;
     }
 }
