@@ -183,13 +183,11 @@ SECTIONS
       BUILD_DIR/src/audio/port_eu.o(.text);
       */libultra_rom.a:*.o(.text);
       */libhvqm2.a:*.o(.text);
-      build/us/asm/llmuldiv_gcc.o(.text);
+      BUILD_DIR/asm/llmuldiv_gcc.o(.text);
 
-      BUILD_DIR/lib/rsp.o(.text);
       BUILD_DIR/src/game*.o(.text);
       BUILD_DIR/src/audio*.o(.text);
       BUILD_DIR/lib/rsp.o(.text);
-#endif
       lib/PR/hvqm/hvqm2sp1.o(.text);
       lib/PR/hvqm/hvqm2sp2.o(.text);
       /* data */
@@ -336,8 +334,6 @@ SECTIONS
 #endif
       BUILD_DIR/src/game/crash_screen.o(.bss*);
       BUILD_DIR/src/game/main.o(.bss*);
-      lib/PR/hvqm/hvqm2sp1.o(.bss*);
-      lib/PR/hvqm/hvqm2sp2.o(.bss*);
       lib/libhvqm2.a(.bss*);
       BUILD_DIR/src/game/game_init.o(.bss*);
       BUILD_DIR/src/game/sound_init.o(.bss*);

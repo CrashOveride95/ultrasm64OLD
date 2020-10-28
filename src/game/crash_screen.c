@@ -18,15 +18,15 @@ u8 gCrashScreenCharToGlyph[128] = {
 
 // really u32, but texture output is u8, so allocate 4x
 u8 gCrashScreenFont[(7 * 9 + 1) * 4] = {
-    #include "textures/crash_screen/crash_font_01234.ia1.inc.c"
-    #include "textures/crash_screen/crash_font_56789.ia1.inc.c"
-    #include "textures/crash_screen/crash_font_ABCDE.ia1.inc.c"
-    #include "textures/crash_screen/crash_font_FGHIJ.ia1.inc.c"
-    #include "textures/crash_screen/crash_font_KLMNO.ia1.inc.c"
-    #include "textures/crash_screen/crash_font_PQRST.ia1.inc.c"
-    #include "textures/crash_screen/crash_font_UVWXY.ia1.inc.c"
-    #include "textures/crash_screen/crash_font_Zsym1.ia1.inc.c"
-    #include "textures/crash_screen/crash_font_sym2.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_01234.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_56789.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_ABCDE.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_FGHIJ.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_KLMNO.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_PQRST.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_UVWXY.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_Zsym1.ia1.inc.c"
+    #include "textures/crash_custom/crash_font_sym2.ia1.inc.c"
 };
 
 
