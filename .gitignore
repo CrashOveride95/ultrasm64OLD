@@ -55,7 +55,6 @@ build/*
 /levels/**/*.png
 /actors/**/*.png
 /textures/**/*.png
-!/textures/crash_screen/*.png
 !/textures/crash_custom/*.png
 /assets/**/*.bin
 /sound/**/*.m64
