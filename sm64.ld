@@ -187,6 +187,7 @@ SECTIONS
       BUILD_DIR/lib/rsp.o(.text);
       BUILD_DIR/src/game*.o(.text);
       BUILD_DIR/src/audio*.o(.text);
+      BUILD_DIR/lib/rsp.o(.text);
 
       /* data */
 #ifdef VERSION_EU
