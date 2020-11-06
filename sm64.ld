@@ -705,13 +705,14 @@ SECTIONS
       BUILD_DIR/sound/sound_data.o(.data);
    }
    END_SEG(assets)
-   
+
+#ifdef HVQM   
    BEGIN_SEG(hvqm, __romPos)
    {
       BUILD_DIR/assets/hvqm.o(.data*);
    }
 	   END_SEG(hvqm)
-
+#endif
    /* Discard everything not specifically mentioned above. */
    /DISCARD/ :
    {
