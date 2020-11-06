@@ -59,9 +59,9 @@ struct DemoInput *gCurrDemoInput = NULL; // demo input sequence
 u16 gDemoInputListID = 0;
 struct DemoInput gRecordedDemoInput = { 0 }; // possibly removed in EU. TODO: Check
 
-extern void read_controller_inputs(void);
-#include "include/timekeeper.inc.c"
-#include "include/hvqm.inc.c"
+//extern void read_controller_inputs(void);
+//#include "include/timekeeper.inc.c"
+//#include "include/hvqm.inc.c"
 
 /**
  * Initializes the Reality Display Processor (RDP).
@@ -647,10 +647,11 @@ void thread5_game_loop(UNUSED void *arg) {
             // amount of free space remaining.
             print_text_fmt_int(180, 20, "BUF %d", gGfxPoolEnd - (u8 *) gDisplayListHead);
         }
-        
+#if 0        
         if (gPlayer1Controller->buttonPressed & L_TRIG) {
             osStartThread(&hvqmThread);
             osRecvMesg(&gDmaMesgQueue, NULL, OS_MESG_BLOCK);
         }
+#endif
     }
 }

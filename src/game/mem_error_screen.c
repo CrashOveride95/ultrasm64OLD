@@ -7,6 +7,7 @@
  */
 /* clang-format on */
 
+#include <ultra64.h>
 #include <types.h>
 #include "segments.h"
 #include "text_strings.h"
