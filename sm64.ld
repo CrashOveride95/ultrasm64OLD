@@ -158,7 +158,7 @@ SECTIONS
       BUILD_DIR/src/game/spawn_object.o(.text);
 #endif
       BUILD_DIR/src/game/spawn_sound.o(.text);
-      BUILD_DIR/src/game/debug.o(.text);
+      BUILD_DIR/src/game/sm_debug.o(.text);
       BUILD_DIR/src/game/screen_transition.o(.text);
       BUILD_DIR/src/game/shadow.o(.text);
       BUILD_DIR/src/game/skybox.o(.text);
@@ -222,7 +222,7 @@ SECTIONS
       BUILD_DIR/src/game/behavior_actions.o(.data*);
       BUILD_DIR/src/game/platform_displacement.o(.data*);
       BUILD_DIR/src/game/spawn_sound.o(.data*);
-      BUILD_DIR/src/game/debug.o(.data*);
+      BUILD_DIR/src/game/sm_debug.o(.data*);
       BUILD_DIR/src/game/screen_transition.o(.data*);
       BUILD_DIR/src/game/shadow.o(.data*);
       BUILD_DIR/src/game/skybox.o(.data*);
@@ -293,7 +293,7 @@ SECTIONS
       BUILD_DIR/src/game/spawn_object.o(.rodata*);
 #endif
       BUILD_DIR/src/game/spawn_sound.o(.rodata*);
-      BUILD_DIR/src/game/debug.o(.rodata*);
+      BUILD_DIR/src/game/sm_debug.o(.rodata*);
       BUILD_DIR/src/game/screen_transition.o(.rodata*);
       BUILD_DIR/src/game/shadow.o(.rodata*);
       BUILD_DIR/src/game/skybox.o(.rodata*);
@@ -355,7 +355,7 @@ SECTIONS
       BUILD_DIR/src/game/object_helpers.o(.bss*);
 #endif
       BUILD_DIR/src/game/behavior_actions.o(.bss*);
-      BUILD_DIR/src/game/debug.o(.bss*);
+      BUILD_DIR/src/game/sm_debug.o(.bss*);
       BUILD_DIR/src/game/shadow.o(.bss*);
       BUILD_DIR/src/game/skybox.o(.bss*);
       BUILD_DIR/src/game/moving_texture.o(.bss*);

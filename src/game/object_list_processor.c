@@ -4,7 +4,7 @@
 #include "area.h"
 #include "behavior_data.h"
 #include "camera.h"
-#include "debug.h"
+#include "sm_debug.h"
 #include "engine/behavior_script.h"
 #include "engine/graph_node.h"
 #include "engine/surface_collision.h"

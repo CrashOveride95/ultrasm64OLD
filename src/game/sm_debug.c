@@ -1,7 +1,7 @@
 #include <PR/ultratypes.h>
 
 #include "behavior_data.h"
-#include "debug.h"
+#include "sm_debug.h"
 #include "engine/behavior_script.h"
 #include "engine/surface_collision.h"
 #include "game_init.h"
