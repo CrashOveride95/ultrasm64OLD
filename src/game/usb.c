@@ -191,7 +191,7 @@ char usb_initialize()
 
     // Find the flashcart
     usb_findcart();
-#if 0
+
     // Set the function pointers based on the flashcart
     switch(usb_cart)
     {
@@ -208,7 +208,6 @@ char usb_initialize()
         default:
             return 0;
     }
-#endif
     return 1;
 }
 
@@ -234,12 +233,11 @@ static void usb_findcart()
         return;
     }
     
-
     // Since we didn't find a 64Drive, let's assume we have an EverDrive
     // Write the key to unlock the registers, then read the version register
     usb_everdrive_writereg(ED_REG_KEY, ED_REGKEY);
-#if 0
     usb_everdrive_readreg(ED_REG_VERSION, &buff);
+
     // Check if we have an EverDrive
     if (buff == ED7_VERSION || buff == ED3_VERSION)
     {        
@@ -264,7 +262,6 @@ static void usb_findcart()
         usb_cart = CART_EVERDRIVE;
         return;
     }
-#endif
 }
 
 
