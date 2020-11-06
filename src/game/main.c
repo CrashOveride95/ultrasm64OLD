@@ -13,8 +13,6 @@
 #include "thread6.h"
 #include "crash_screen.h"
 #include "mem_error_screen.h"
-#include "usb.h"
-#include "debug.h"
 
 // Message IDs
 #define MESG_SP_COMPLETE 100
