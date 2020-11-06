@@ -13,6 +13,8 @@
 #include "thread6.h"
 #include "crash_screen.h"
 #include "mem_error_screen.h"
+#include "usb.h"
+#include "debug.h"
 
 // Message IDs
 #define MESG_SP_COMPLETE 100
@@ -461,7 +463,7 @@ void thread1_idle(UNUSED void *arg) {
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osCreatePiManager(OS_PRIORITY_PIMGR, &gPIMesgQueue, gPIMesgBuf, ARRAY_COUNT(gPIMesgBuf));
     create_thread(&gMainThread, 3, thread3_main, NULL, gThread3Stack + 0x2000, 100);
-    if (D_8032C650 == 0) {
+    if (D_8032C650 == 0) {  
         osStartThread(&gMainThread);
     }
     osSetThreadPri(NULL, 0);
