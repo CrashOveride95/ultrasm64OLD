@@ -2,6 +2,7 @@
 
 - This repo contains a full decompilation of Super Mario 64 (J), (U), and (E) with minor exceptions in the audio subsystem.
 - It has been edited to allow for the usage of the final "N64 OS" library, version ``2.0L``
+- Support for Rumble Pak is included, but not all Shindou rumble events are here due to Shindou's state in Refresh 12.
 - It has also been patched with someone2639's shiftable segments patch
 - It has extremely WIP HVQM full motion video support
 - Getting UNFLoader (flashcart USB library) to work with the game is in progress.

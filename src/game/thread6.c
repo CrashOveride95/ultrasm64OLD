@@ -5,19 +5,12 @@
 #include "main.h"
 #include "thread6.h"
 
-#ifdef VERSION_SH
-
 static s8 D_SH_8030CCB4;
 static s32 sUnusedDisableRumble;
 static s32 sRumblePakThreadActive;
 static s32 sRumblePakActive;
 static s32 sRumblePakErrorCount;
 s32 gRumblePakTimer;
-
-// These void* are OSPfs* but we don't have that header
-extern s32 osMotorStop(void *);
-extern s32 osMotorStart(void *);
-extern u32 osMotorInit(OSMesgQueue *, void *, s32);
 
 void init_rumble_pak_scheduler_queue(void) {
     osCreateMesgQueue(&gRumblePakSchedulerMesgQueue, gRumblePakSchedulerMesgBuf, 1);
@@ -286,4 +279,3 @@ void rumble_thread_update_vi(void) {
     osSendMesg(&gRumbleThreadVIMesgQueue, (OSMesg) 0x56525443, OS_MESG_NOBLOCK);
 }
 
-#endif

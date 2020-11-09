@@ -41,6 +41,7 @@
 # Text editor remnants
 *.swp
 .vscode/*
+debug.log
 
 # General project-specific ignores
 doxygen/doxygen/*

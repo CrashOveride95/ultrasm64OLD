@@ -13,9 +13,7 @@ ALIGNED8 u8 gIdleThreadStack[0x800];
 ALIGNED8 u8 gThread3Stack[0x2000];
 ALIGNED8 u8 gThread4Stack[0x2000];
 ALIGNED8 u8 gThread5Stack[0x2000];
-#ifdef VERSION_SH
 ALIGNED8 u8 gThread6Stack[0x2000];
-#endif
 // 0x400 bytes
 ALIGNED8 u8 gGfxSPTaskStack[SP_DRAM_STACK_SIZE8];
 // 0xc00 bytes for f3dex, 0x900 otherwise
