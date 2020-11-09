@@ -82,12 +82,19 @@ ifeq ($(GRUCODE),f3d_new) # Fast3D 2.0H (Shindou)
   TARGET := $(TARGET).f3d_new
   COMPARE := 0
 else
+ifeq ($(GRUCODE),super3d) # Super3D 2.0G
+  GRUCODE_DEF := F3D_NEW
+  GRUCODE_DEF2  :=  SUPER3D_GBI
+  TARGET := $(TARGET).super3d
+  COMPARE := 0
+else
 ifeq ($(GRUCODE),f3dzex) # Fast3DZEX (2.08J / Animal Forest - Dōbutsu no Mori)
   GRUCODE_DEF := F3DEX_GBI_2
   GRUCODE_DEF2  :=  F3DZEX_GBI_2
   GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1
   TARGET := $(TARGET).f3dzex
   COMPARE := 0
+endif
 endif
 endif
 endif
@@ -99,6 +106,12 @@ GRUCODE_ASFLAGS := $(GRUCODE_ASFLAGS) --defsym $(GRUCODE_DEF)=1 --defsym $(GRUCO
 else
 GRUCODE_CFLAGS := -D$(GRUCODE_DEF)
 GRUCODE_ASFLAGS := $(GRUCODE_ASFLAGS) --defsym $(GRUCODE_DEF)=1
+endif
+
+
+ifeq ($(GRUCODE),super3d) 
+GRUCODE_CFLAGS :=  -D$(GRUCODE_DEF2) -D$(GRUCODE_DEF)
+GRUCODE_ASFLAGS := $(GRUCODE_ASFLAGS) --defsym $(GRUCODE_DEF)=1 --defsym $(GRUCODE_DEF2)=1
 endif
 
 ifeq ($(TARGET_N64),0)

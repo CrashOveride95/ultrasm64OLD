@@ -236,7 +236,10 @@ void create_task_structure(void) {
     gGfxSPTask->task.t.ucode_data = gspF3DEX2_fifoDataStart;
 #elif   F3DEX_GBI
     gGfxSPTask->task.t.ucode = gspF3DEX_fifoTextStart;
-    gGfxSPTask->task.t.ucode_data = gspF3DEX_fifoDataStart;  
+    gGfxSPTask->task.t.ucode_data = gspF3DEX_fifoDataStart;
+#elif   SUPER3D_GBI
+    gGfxSPTask->task.t.ucode = gspSuper3D_fifoTextStart;
+    gGfxSPTask->task.t.ucode_data = gspSuper3D_fifoDataStart; 
 #else
     gGfxSPTask->task.t.ucode = gspFast3D_fifoTextStart;
     gGfxSPTask->task.t.ucode_data = gspFast3D_fifoDataStart;
