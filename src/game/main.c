@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include <PR/os_system.h>
 #include <stdio.h>
 
 #include "sm64.h"
@@ -464,9 +465,17 @@ void thread1_idle(UNUSED void *arg) {
     }
 }
 
-void main_func(void) {
-    UNUSED u8 pad[64]; // needed to pad the stack
+/*
+ * Clear RAM after main segment, to avoid potential issues with some N64s that didn't clear RDRAM for up to *30 MINUTES* after power off
+ */
 
+static void ClearRAM(void)
+{
+    bzero(_mainSegmentEnd, (size_t)osMemSize - (size_t)OS_K0_TO_PHYSICAL(_mainSegmentEnd));
+}
+
+void main_func(void) {
+    ClearRAM();
     osInitialize();
     create_thread(&gIdleThread, 1, thread1_idle, NULL, gIdleThreadStack + 0x800, 100);
     osStartThread(&gIdleThread);

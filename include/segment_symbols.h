@@ -41,6 +41,7 @@ DECLARE_SEGMENT(behavior)
 DECLARE_SEGMENT(scripts)
 DECLARE_SEGMENT(goddard)
 DECLARE_SEGMENT(framebuffers)
+extern u8 _mainSegmentEnd[];
 extern u8 _goddardSegmentStart[];
 extern u8 _engineSegmentStart[];
 extern u8 _engineSegmentNoloadEnd[];
