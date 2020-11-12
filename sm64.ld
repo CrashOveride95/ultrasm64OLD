@@ -85,12 +85,6 @@ SECTIONS
    BEGIN_NOLOAD(buffers)
    {
       BUILD_DIR/src/buffers/buffers.o(.bss*);
-      BUILD_DIR/src/audio/globals_start.o(.bss*);
-      BUILD_DIR/src/audio/synthesis.o(.bss*);
-      BUILD_DIR/src/audio/heap.o(.bss*);
-      BUILD_DIR/src/audio/load.o(.bss*);
-      BUILD_DIR/src/audio/data.o(.bss*);
-      BUILD_DIR/src/audio*.o(.bss*);
 
 #ifdef VERSION_EU
       . = ALIGN(0x200);
@@ -104,220 +98,43 @@ SECTIONS
    /*ASSERT((. <= SEG_MAIN), "Error: buffers segment extended into main")*/
 
    . = _buffersSegmentNoloadEnd;
-   /* lib/src/__osDevMgrMain.c and lib/src/osCreateViManager.c contain infinite
-    * loops compiled without -g, which cause the return statements and the .o
-    * files themselves to be aligned to 32-byte boundaries. But the linker
-    * Nintendo used did not respect .o file alignment, and aligned the files
-    * only to 16 bytes, in some cases misaligning them. We force the same to
-    * happen using the SUBALIGN directive. This is harmless; the alignment is
-    * just an optimization. */
    BEGIN_SEG(main, .) SUBALIGN(16)
    {
       BUILD_DIR/asm/entry.o(.text);
-#ifdef VERSION_EU
-      BUILD_DIR/src/game/_Ldtob.o(.text);
-      BUILD_DIR/src/game/_Litob.o(.text);
-      BUILD_DIR/src/game/_Printf.o(.text);
-#endif
-      BUILD_DIR/src/game/crash_screen.o(.text);
-      BUILD_DIR/src/game/main.o(.text);
-      BUILD_DIR/src/game/game_init.o(.text);
-      BUILD_DIR/src/game/sound_init.o(.text);
-      BUILD_DIR/src/game/thread6.o(.text);
-      BUILD_DIR/src/game/level_update.o(.text);
-      BUILD_DIR/src/game/interaction.o(.text);
-      BUILD_DIR/src/game/mario.o(.text);
-      BUILD_DIR/src/game/mario_step.o(.text);
-      BUILD_DIR/src/game/mario_actions_cutscene.o(.text);
-      BUILD_DIR/src/game/mario_actions_automatic.o(.text);
-      BUILD_DIR/src/game/mario_actions_stationary.o(.text);
-      BUILD_DIR/src/game/mario_actions_moving.o(.text);
-      BUILD_DIR/src/game/mario_actions_airborne.o(.text);
-      BUILD_DIR/src/game/mario_actions_submerged.o(.text);
-      BUILD_DIR/src/game/mario_actions_object.o(.text);
-      BUILD_DIR/src/game/level_geo.o(.text);
-      BUILD_DIR/src/game/mario_misc.o(.text);
-      BUILD_DIR/src/game/memory.o(.text);
-      BUILD_DIR/src/game/save_file.o(.text);
-      BUILD_DIR/src/game/area.o(.text);
-      BUILD_DIR/src/game/rendering_graph_node.o(.text);
-      BUILD_DIR/src/game/profiler.o(.text);
-      BUILD_DIR/asm/slidec.o(.text);
-      BUILD_DIR/src/game/camera.o(.text);
-      BUILD_DIR/src/game/debug_course.o(.text);
-      BUILD_DIR/src/game/object_list_processor.o(.text);
-#ifndef VERSION_EU
-      BUILD_DIR/src/game/object_helpers.o(.text);
-#endif
-      BUILD_DIR/src/game/behavior_actions.o(.text);
-      BUILD_DIR/src/game/platform_displacement.o(.text);
-#ifndef VERSION_EU
-      BUILD_DIR/src/game/object_collision.o(.text);
-      BUILD_DIR/src/game/spawn_object.o(.text);
-#endif
-      BUILD_DIR/src/game/spawn_sound.o(.text);
-      BUILD_DIR/src/game/sm_debug.o(.text);
-      BUILD_DIR/src/game/screen_transition.o(.text);
-      BUILD_DIR/src/game/shadow.o(.text);
-      BUILD_DIR/src/game/skybox.o(.text);
-      BUILD_DIR/src/game/moving_texture.o(.text);
-      BUILD_DIR/src/game/geo_misc.o(.text);
-      BUILD_DIR/src/game/paintings.o(.text);
-      BUILD_DIR/src/game/print.o(.text);
-      BUILD_DIR/src/game/ingame_menu.o(.text);
-      BUILD_DIR/src/game/envfx_snow.o(.text);
-      BUILD_DIR/src/game/envfx_bubbles.o(.text);
-      BUILD_DIR/src/game/macro_special_objects.o(.text);
-      BUILD_DIR/src/game/hud.o(.text);
-      BUILD_DIR/src/game/obj_behaviors.o(.text);
-      BUILD_DIR/src/game/obj_behaviors_2.o(.text);
-      BUILD_DIR/src/audio/synthesis.o(.text);
-      BUILD_DIR/src/audio/heap.o(.text);
-      BUILD_DIR/src/audio/load.o(.text);
-      BUILD_DIR/src/audio/playback.o(.text);
-      BUILD_DIR/src/audio/effects.o(.text);
-      BUILD_DIR/src/audio/seqplayer.o(.text);
-      BUILD_DIR/src/audio/external.o(.text);
-      BUILD_DIR/src/audio/port_eu.o(.text);
-      */libultra_rom.a:*.o(.text);
-      */libhvqm2.a:*.o(.text);
-      BUILD_DIR/asm/llmuldiv_gcc.o(.text);
 
       BUILD_DIR/src/game*.o(.text);
       BUILD_DIR/src/audio*.o(.text);
-      BUILD_DIR/lib/rsp.o(.text);
+      BUILD_DIR/asm/llmuldiv_gcc.o(.text);
+      BUILD_DIR/asm/slidec.o(.text);
+
+      */libultra_rom.a:*.o(.text);
+      */libhvqm2.a:*.o(.text);
+
+      BUILD_DIR/lib/rsp.o(.text);   
       lib/PR/hvqm/hvqm2sp1.o(.text);
       lib/PR/hvqm/hvqm2sp2.o(.text);
+
       /* data */
-#ifdef VERSION_EU
-      BUILD_DIR/src/game/_Ldtob.o(.data*);
-      BUILD_DIR/src/game/_Litob.o(.data*);
-      BUILD_DIR/src/game/_Printf.o(.data*);
-#endif
-      BUILD_DIR/src/game/crash_screen.o(.data*);
-      BUILD_DIR/src/game/main.o(.data*);
-      BUILD_DIR/src/game/game_init.o(.data*);
-      BUILD_DIR/src/game/sound_init.o(.data*);
-      BUILD_DIR/src/game/level_update.o(.data*);
-      BUILD_DIR/src/game/interaction.o(.data*);
-      BUILD_DIR/src/game/mario.o(.data*);
-      BUILD_DIR/src/game/mario_step.o(.data*);
-      BUILD_DIR/src/game/mario_actions_cutscene.o(.data*);
-      BUILD_DIR/src/game/mario_actions_moving.o(.data*);
-      BUILD_DIR/src/game/mario_actions_submerged.o(.data*);
-      BUILD_DIR/src/game/mario_actions_object.o(.data*);
-      BUILD_DIR/src/game/mario_misc.o(.data*);
-      BUILD_DIR/src/game/memory.o(.data*);
-      BUILD_DIR/src/game/save_file.o(.data*);
-      BUILD_DIR/src/game/area.o(.data*);
-      BUILD_DIR/src/game/rendering_graph_node.o(.data*);
-      BUILD_DIR/src/game/profiler.o(.data*);
-      BUILD_DIR/src/game/camera.o(.data*);
-      BUILD_DIR/src/game/object_list_processor.o(.data*);
-#ifndef VERSION_EU
-      BUILD_DIR/src/game/object_helpers.o(.data*);
-#endif
-      BUILD_DIR/src/game/behavior_actions.o(.data*);
-      BUILD_DIR/src/game/platform_displacement.o(.data*);
-      BUILD_DIR/src/game/spawn_sound.o(.data*);
-      BUILD_DIR/src/game/sm_debug.o(.data*);
-      BUILD_DIR/src/game/screen_transition.o(.data*);
-      BUILD_DIR/src/game/shadow.o(.data*);
-      BUILD_DIR/src/game/skybox.o(.data*);
-      BUILD_DIR/src/game/moving_texture.o(.data*);
-      BUILD_DIR/src/game/geo_misc.o(.data*);
-      BUILD_DIR/src/game/paintings.o(.data*);
-      BUILD_DIR/src/game/print.o(.data*);
-      BUILD_DIR/src/game/ingame_menu.o(.data*);
-      BUILD_DIR/src/game/envfx_snow.o(.data*);
-      BUILD_DIR/src/game/envfx_bubbles.o(.data*);
-      BUILD_DIR/src/game/macro_special_objects.o(.data*);
-      BUILD_DIR/src/game/hud.o(.data*);
-      BUILD_DIR/src/game/obj_behaviors.o(.data*);
-      BUILD_DIR/src/game/obj_behaviors_2.o(.data*);
-      /* wildcard doesn't match on EU due to files being moved to engine/ */
       BUILD_DIR/src/game*.o(.data*);
       BUILD_DIR/src/game*.o(.sdata*);
-      BUILD_DIR/src/audio/synthesis.o(.data*);
-      BUILD_DIR/src/audio/heap.o(.data*);
-      BUILD_DIR/src/audio/load.o(.data*);
-      BUILD_DIR/src/audio/playback.o(.data*);
-      BUILD_DIR/src/audio/effects.o(.data*);
-      BUILD_DIR/src/audio/seqplayer.o(.data*);
-      BUILD_DIR/src/audio/external.o(.data*);
-      BUILD_DIR/src/audio/port_eu.o(.data*);
-      BUILD_DIR/src/audio/data.o(.data*);
       BUILD_DIR/src/audio*.o(.data*);
       BUILD_DIR/src/audio*.o(.sdata*);
+
       */libultra_rom.a:*.o(.data*);
       */libultra_rom.a:*.o(.sdata*);
-      */libultra_rom.a:*.o(COMMON);
-      */libultra_rom.a:*.o(.scommon*);
       */libhvqm2.a:*.o(.data*);
+
+      BUILD_DIR/lib/rsp.o(.data*);
       lib/PR/hvqm/hvqm2sp1.o(.data*);
       lib/PR/hvqm/hvqm2sp2.o(.data*);
+
       /* rodata */
-#ifdef VERSION_EU
-      BUILD_DIR/src/game/_Ldtob.o(.rodata*);
-      BUILD_DIR/src/game/_Litob.o(.rodata*);
-      BUILD_DIR/src/game/_Printf.o(.rodata*);
-#endif
-      BUILD_DIR/src/game/crash_screen.o(.rodata*);
-      BUILD_DIR/src/game/main.o(.rodata*);
-      BUILD_DIR/src/game/game_init.o(.rodata*);
-      BUILD_DIR/src/game/sound_init.o(.rodata*);
-      BUILD_DIR/src/game/level_update.o(.rodata*);
-      BUILD_DIR/src/game/interaction.o(.rodata*);
-      BUILD_DIR/src/game/mario.o(.rodata*);
-      BUILD_DIR/src/game/mario_step.o(.rodata*);
-      BUILD_DIR/src/game/mario_actions_cutscene.o(.rodata*);
-      BUILD_DIR/src/game/mario_actions_automatic.o(.rodata*);
-      BUILD_DIR/src/game/mario_actions_stationary.o(.rodata*);
-      BUILD_DIR/src/game/mario_actions_moving.o(.rodata*);
-      BUILD_DIR/src/game/mario_actions_airborne.o(.rodata*);
-      BUILD_DIR/src/game/mario_actions_submerged.o(.rodata*);
-      BUILD_DIR/src/game/mario_actions_object.o(.rodata*);
-      BUILD_DIR/src/game/mario_misc.o(.rodata*);
-      BUILD_DIR/src/game/area.o(.rodata*);
-      BUILD_DIR/src/game/rendering_graph_node.o(.rodata*);
-      BUILD_DIR/src/game/camera.o(.rodata*);
-      BUILD_DIR/src/game/object_list_processor.o(.rodata*);
-#ifndef VERSION_EU
-      BUILD_DIR/src/game/object_helpers.o(.rodata*);
-#endif
-      BUILD_DIR/src/game/behavior_actions.o(.rodata*);
-#ifndef VERSION_EU
-      BUILD_DIR/src/game/object_collision.o(.rodata*);
-      BUILD_DIR/src/game/spawn_object.o(.rodata*);
-#endif
-      BUILD_DIR/src/game/spawn_sound.o(.rodata*);
-      BUILD_DIR/src/game/sm_debug.o(.rodata*);
-      BUILD_DIR/src/game/screen_transition.o(.rodata*);
-      BUILD_DIR/src/game/shadow.o(.rodata*);
-      BUILD_DIR/src/game/skybox.o(.rodata*);
-      BUILD_DIR/src/game/moving_texture.o(.rodata*);
-      BUILD_DIR/src/game/geo_misc.o(.rodata*);
-      BUILD_DIR/src/game/paintings.o(.rodata*);
-      BUILD_DIR/src/game/print.o(.rodata*);
-      BUILD_DIR/src/game/ingame_menu.o(.rodata*);
-      BUILD_DIR/src/game/envfx_snow.o(.rodata*);
-      BUILD_DIR/src/game/envfx_bubbles.o(.rodata*);
-      BUILD_DIR/src/game/macro_special_objects.o(.rodata*);
-      BUILD_DIR/src/game/hud.o(.rodata*);
-      BUILD_DIR/src/game/obj_behaviors.o(.rodata*);
-      BUILD_DIR/src/game/obj_behaviors_2.o(.rodata*);
       BUILD_DIR/src/game*.o(.rodata*);
-      BUILD_DIR/src/audio/synthesis.o(.rodata*);
-      BUILD_DIR/src/audio/heap.o(.rodata*);
-      BUILD_DIR/src/audio/load.o(.rodata*);
-      BUILD_DIR/src/audio/playback.o(.rodata*);
-      BUILD_DIR/src/audio/effects.o(.rodata*);
-      BUILD_DIR/src/audio/seqplayer.o(.rodata*);
-      BUILD_DIR/src/audio/external.o(.rodata*);
-      BUILD_DIR/src/audio/port_eu.o(.rodata*);
       BUILD_DIR/src/audio*.o(.rodata*);
+
       */libultra_rom.a:*.o(.rodata*);
       */libhvqm2.a:*.o(.rodata*);
+
       BUILD_DIR/lib/rsp.o(.rodata*);
       lib/PR/hvqm/hvqm2sp1.o(.rodata*);
       lib/PR/hvqm/hvqm2sp2.o(.rodata*);
@@ -325,54 +142,11 @@ SECTIONS
    END_SEG(main)
    BEGIN_NOLOAD(main)
    {
-#ifdef VERSION_EU
-      BUILD_DIR/src/game/_Ldtob.o(.bss*);
-      BUILD_DIR/src/game/_Litob.o(.bss*);
-      BUILD_DIR/src/game/_Printf.o(.bss*);
-#endif
-      BUILD_DIR/src/game/crash_screen.o(.bss*);
-      BUILD_DIR/src/game/main.o(.bss*);
-      lib/libhvqm2.a(.bss*);
-      BUILD_DIR/src/game/game_init.o(.bss*);
-      BUILD_DIR/src/game/sound_init.o(.bss*);
-      BUILD_DIR/src/game/level_update.o(.bss*);
-      BUILD_DIR/src/game/interaction.o(.bss*);
-      BUILD_DIR/src/game/mario.o(.bss*);
-      BUILD_DIR/src/game/mario_actions_cutscene.o(.bss*);
-      BUILD_DIR/src/game/mario_actions_moving.o(.bss*);
-      BUILD_DIR/src/game/mario_actions_submerged.o(.bss*);
-      BUILD_DIR/src/game/mario_misc.o(.bss*);
-      BUILD_DIR/src/game/memory.o(.bss*);
-      BUILD_DIR/src/game/save_file.o(.bss*);
-      BUILD_DIR/src/game/area.o(.bss*);
-      BUILD_DIR/src/game/rendering_graph_node.o(.bss*);
-      BUILD_DIR/src/game/profiler.o(.bss*);
-      BUILD_DIR/src/game/camera.o(.bss*);
-      BUILD_DIR/src/game/object_list_processor.o(.bss*);
-#ifndef VERSION_EU
-      BUILD_DIR/src/game/object_helpers.o(.bss*);
-#endif
-      BUILD_DIR/src/game/behavior_actions.o(.bss*);
-      BUILD_DIR/src/game/sm_debug.o(.bss*);
-      BUILD_DIR/src/game/shadow.o(.bss*);
-      BUILD_DIR/src/game/skybox.o(.bss*);
-      BUILD_DIR/src/game/moving_texture.o(.bss*);
-      BUILD_DIR/src/game/geo_misc.o(.bss*);
-      BUILD_DIR/src/game/paintings.o(.bss*);
-      BUILD_DIR/src/game/print.o(.bss*);
-      BUILD_DIR/src/game/ingame_menu.o(.bss*);
-      BUILD_DIR/src/game/envfx_snow.o(.bss*);
-      BUILD_DIR/src/game/envfx_bubbles.o(.bss*);
-      BUILD_DIR/src/game/macro_special_objects.o(.bss*)
-      BUILD_DIR/src/game/hud.o(.bss*);
-      BUILD_DIR/src/game/obj_behaviors.o(.bss*);
-      BUILD_DIR/src/game/obj_behaviors_2.o(.bss*);
-#ifndef VERSION_EU
       BUILD_DIR/src/game*.o(.bss*);
       BUILD_DIR/src/game*.o(.sbss*);
-#endif
-      BUILD_DIR/src/audio/external.o(.bss*);
-      BUILD_DIR/src/audio/port_eu.o(.bss*);
+      BUILD_DIR/src/audio*.o(.bss*);
+      BUILD_DIR/src/audio*.o(.sbss*);
+      
       */libultra_rom.a:*.o(.bss*);
       */libultra_rom.a:*.o(.sbss*);
 
@@ -388,60 +162,16 @@ SECTIONS
 
    BEGIN_SEG(engine, .)
    {
-      BUILD_DIR/src/engine/math_util.o(.text);
-      BUILD_DIR/src/engine/graph_node.o(.text);
-      BUILD_DIR/src/engine/graph_node_manager.o(.text);
-      BUILD_DIR/src/engine/geo_layout.o(.text);
-      BUILD_DIR/src/engine/level_script.o(.text);
-      BUILD_DIR/src/engine/surface_collision.o(.text);
-      BUILD_DIR/src/engine/surface_load.o(.text);
-      BUILD_DIR/src/engine/behavior_script.o(.text);
-#ifdef VERSION_EU
-      BUILD_DIR/src/game/object_collision.o(.text);
-      BUILD_DIR/src/game/spawn_object.o(.text);
-      BUILD_DIR/src/game/object_helpers.o(.text);
-#endif
       BUILD_DIR/src/engine*.o(.text);
       /* data */
-      BUILD_DIR/src/engine/graph_node.o(.data*);
-      BUILD_DIR/src/engine/graph_node_manager.o(.data*);
-      BUILD_DIR/src/engine/math_util.o(.data*);
-      BUILD_DIR/src/engine/geo_layout.o(.data*);
-      BUILD_DIR/src/engine/level_script.o(.data*);
-      BUILD_DIR/src/engine/behavior_script.o(.data*);
-#ifdef VERSION_EU
-      BUILD_DIR/src/game/object_collision.o(.data*);
-      BUILD_DIR/src/game/spawn_object.o(.data*);
-      BUILD_DIR/src/game/object_helpers.o(.data*);
-#endif
       BUILD_DIR/src/engine*.o(.data*);
       BUILD_DIR/src/engine*.o(.sdata*);
       /* rodata */
-      BUILD_DIR/src/engine/math_util.o(.rodata*);
-      BUILD_DIR/src/engine/level_script.o(.rodata*);
-      BUILD_DIR/src/engine/surface_collision.o(.rodata*);
-      BUILD_DIR/src/engine/surface_load.o(.rodata*);
-#ifdef VERSION_EU
-      BUILD_DIR/src/game/object_collision.o(.rodata*);
-      BUILD_DIR/src/game/spawn_object.o(.rodata*);
-      BUILD_DIR/src/game/object_helpers.o(.rodata*);
-#endif
       BUILD_DIR/src/engine*.o(.rodata*);
    }
    END_SEG(engine)
    BEGIN_NOLOAD(engine)
    {
-      BUILD_DIR/src/engine/math_util.o(.bss*);
-      BUILD_DIR/src/engine/geo_layout.o(.bss*);
-      BUILD_DIR/src/engine/level_script.o(.bss*);
-      BUILD_DIR/src/engine/surface_collision.o(.bss*);
-      BUILD_DIR/src/engine/surface_load.o(.bss*);
-      BUILD_DIR/src/engine/behavior_script.o(.bss*);
-#ifdef VERSION_EU
-      BUILD_DIR/src/game/object_collision.o(.bss*);
-      BUILD_DIR/src/game/spawn_object.o(.bss*);
-      BUILD_DIR/src/game/object_helpers.o(.bss*);
-#endif
       BUILD_DIR/src/engine*.o(.bss*);
       . = ALIGN(0x100);
    }

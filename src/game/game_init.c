@@ -566,9 +566,7 @@ void init_controllers(void) {
             // into any port in order to play the game. this was probably
             // so if any of the ports didn't work, you can have controllers
             // plugged into any of them and it will work.
-#ifdef VERSION_SH
             gControllers[cont].port = port;
-#endif
             gControllers[cont].statusData = &gControllerStatuses[port];
             gControllers[cont++].controllerData = &gControllerPads[port];
         }
