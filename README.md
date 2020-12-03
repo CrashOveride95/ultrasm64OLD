@@ -1,4 +1,8 @@
-# Super Mario 64
+# UltraSM64 (DEPRECATED)
+
+# DUE TO THE RELEASE OF REFRESH 13, THIS REPO IS DEPRECATED. ALL CHANGES WILL BE PORTED TO REFRESH 13 IN A NEWER REPO
+# PLEASE DON'T USE THIS REPO
+
 
 - This repo contains a full decompilation of Super Mario 64 (J), (U), and (E) with minor exceptions in the audio subsystem.
 - It has been edited to allow for the usage of the final "N64 OS" library, version ``2.0L``
